@@ -1,0 +1,28 @@
+<div class="row align-center">
+  <div class="col col-xs-1">
+    <div class="padding-top">
+      <%= line_item.quantity %>
+    </div>
+  </div>
+  <div class="col col-xs-2">
+    <figure class="image">
+      <%= image_tag(line_item.product.image_url(:thumb)) %>
+    </figure>
+  </div>
+  <div class="col col-xs-3 padding-top">
+    <strong><%= line_item.product.title %></strong>
+  </div>
+  <div class="col col-xs-4 align-justify ">
+    <%= truncate(line_item.product.description, length: 300) %>
+  </div>
+  <div class="col col-xs-2 padding-top">
+    <strong><%= number_to_currency(line_item.total_price) %></strong>
+  </div>
+</div>
+
+<div class="has-text-right">
+  <%= link_to 'Remove Item', line_item, method: :delete, data: { confirm: "Are
+  you sure? " }, class: "btn btn-danger btn-sm" %>
+</div>
+
+<hr />
