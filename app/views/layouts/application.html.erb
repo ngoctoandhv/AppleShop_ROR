@@ -14,9 +14,16 @@
       <%= render  "shared/header" %>
     </div>
     <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-
+      <% if flash[:notice] %>
+        <div class="notification global-notification">
+          <p class="notice"><%= notice %></p>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="notification global-notification">
+          <p class="alert"><%= alert %></p>
+        </div>
+      <% end %>
         <%= yield %>
     </div>
   </body>
