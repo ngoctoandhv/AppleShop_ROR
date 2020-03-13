@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="product-index-grid">
+    <% @products.each do |product| %>
+      <div class="product">
+        <div class="product-thumb">
+          <%= link_to image_tag(product.image_url(:thumb)), product %>
+          <% if product.condition? %>
+            <div class="condition">
+              <span class=""><%= product.condition %></span>
+            </div>
+          <% end %>
+        </div>
+          <div class="bg-light info">
+            <h3 class="title"><%= link_to product.title, product %></h3>
+            <p class="">Sold by <%= product.user.name %></p>
+            <p class="price"><%= number_to_currency(product.price) %></p>
+            <% if product_author(product) %>
+              <%= link_to 'Edit', edit_product_path(product), class: "btn btn-primary btn-sm" %> |
+              <%= link_to 'Delete', product, method: :delete, data: { confirm: "Are you sure ?" }, class: "btn btn-danger btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>

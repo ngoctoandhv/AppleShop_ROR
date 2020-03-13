@@ -1,0 +1,41 @@
+<%= simple_form_for(@product) do |f| %>
+<%= f.error_notification %>
+
+<div class="row">
+  <div class="col-xs-8">
+    <%= f.input :title , required: true%>
+  </div>
+  <div class="col-xs-4">
+    <%= f.input :price, required: true %>
+  </div>
+</div>
+<%= f.input :description %>
+<div class="form-group row">
+  <div class="col-xs-4">
+    <div class="field">
+      <div>
+        <%= f.label :model %> 
+      </div>
+        <%= f.input_field :model, collection: Product::MODEL, prompt: "Select Model" %>
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <div>
+      <%= f.label :color %> 
+    </div>
+      <%= f.input_field :color, collection: Product::COLOR, prompt: "Select Color" %>
+    </div>
+  <div class="col-xs-4">
+    <div>
+      <%= f.label :condition %> 
+    </div>
+      <%= f.input_field :condition, collection: Product::CONDITION, prompt: "Select Condition" %>
+  </div>
+</div>
+
+<%= f.input :image, as: :file %>
+<div class="form-actions">
+<%= f.button :submit, class: 'btn btn-primary'%>
+</div>
+
+<% end %>
