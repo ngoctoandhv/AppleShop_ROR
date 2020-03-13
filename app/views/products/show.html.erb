@@ -1,0 +1,47 @@
+<div class="row product-show">
+  <div class="col-xs-8">
+    <h1><%= @product.title %></h1>
+    <div class="image-product align-center">
+      <%= image_tag(@product.image_url(:default)) %>
+    </div>
+
+  <div class="">
+    <h3 class="subtitle">Description</h3>
+    <%= @product.description %>
+    <h3 class="">Product Specs</h3>
+    <table class="table table-hover">
+      <% if @product.model %>
+      <tr>
+        <td class="">Model:</td>
+        <td><%= @product.model %></td>
+      </tr>
+      <% end %>
+      <% if @product.condition %>
+      <tr>
+        <td class="">Condition:</td>
+        <td><%= @product.condition %></td>
+      </tr>
+      <% end %>
+      <% if @product.color %>
+        <tr>
+          <td class="">Color:</td>
+          <td><%= @product.color %></td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="col-xs-3 col-xs-offset-1">
+    <div class="Add-Cart bg-light align-center">
+      <h4 class=""><%= number_to_currency(@product.price) %></h4>
+      <p class="">Sold by <%= @product.user.name %></p>
+      <%= button_to 'Add to cart', product_path(product_id: @product), class: 'btn btn-warning add-to-cart' %>
+    </div>
+  </div>
+</div>
+<div class="align-center">
+  <% if product_author(@product) %>
+  <%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-primary' %> |
+  <%= link_to 'Back', products_path, class: 'btn btn-info' %>
+  <% end %>
+</div>
