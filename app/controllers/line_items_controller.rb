@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
-  before_action :current_cart, only: :created
+  before_action :current_cart, only: [:created, :destroy]
 
   # GET /line_items
   # GET /line_items.json
@@ -57,7 +57,7 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @cart = cart.find(session[:cart_id])
+    @cart = Cart.find(session[:cart_id])
     @line_item.destroy
     respond_to do |format|
       format.html { redirect_to cart_path(@cart), notice: 'Line item was successfully destroyed.' }
